@@ -1,9 +1,8 @@
 package com.adyen.android.assignment
 
-import com.adyen.android.assignment.api.PlanetaryService
+import com.bkarakoca.data.PlanetaryService
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.junit.Ignore
 import org.junit.Test
 
 
@@ -16,7 +15,7 @@ class PlanetaryServiceTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testResponseCode() = runTest {
-        val response = PlanetaryService.instance.getPictures()
+        val response = com.bkarakoca.data.PlanetaryService.instance.getPictures()
         assert(response.isSuccessful)
     }
 }
