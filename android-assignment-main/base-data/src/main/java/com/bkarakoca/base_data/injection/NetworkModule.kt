@@ -1,5 +1,6 @@
-package com.bkarakoca.base_data
+package com.bkarakoca.base_data.injection
 
+import com.bkarakoca.base_data.BuildConfig
 import com.bkarakoca.base_data.util.ApiKeyInterceptor
 import com.google.gson.Gson
 import dagger.Lazy
