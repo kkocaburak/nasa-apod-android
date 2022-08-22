@@ -3,8 +3,11 @@ package com.bkarakoca.ui_nasa_apod.apodlisting
 import androidx.lifecycle.MutableLiveData
 import com.bkarakoca.core.base.BaseViewModel
 import com.bkarakoca.core.extension.launch
+import com.bkarakoca.core.extension.notifyDataChange
 import com.bkarakoca.domain.uimodel.ApodListUIModel
 import com.bkarakoca.domain.uimodel.ApodUIModel
+import com.bkarakoca.domain.uimodel.sortByDateDes
+import com.bkarakoca.domain.uimodel.sortByTitleAsc
 import com.bkarakoca.domain.usecase.GetNasaApodListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.onCompletion
@@ -14,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class FRNasaApodListingVM @Inject constructor(
     private val getNasaApodListUseCase: GetNasaApodListUseCase
-): BaseViewModel() {
+) : BaseViewModel() {
 
     val apodListUIModel = MutableLiveData<ApodListUIModel>()
 
@@ -37,6 +40,24 @@ class FRNasaApodListingVM @Inject constructor(
 
     fun onApodItemClicked(apodUIModel: ApodUIModel) {
         navigate(FRNasaApodListingDirections.toFRNasaApodDetail(apodUIModel))
+    }
+
+    fun onReorderClicked() {
+        val reorderDialog = DialogFRApodListReorder { isByTitle, isByDate ->
+            orderApodList(isByTitle, isByDate)
+        }
+
+        navigate(reorderDialog, FRNasaApodListingVM::class.java.toString())
+    }
+
+
+    private fun orderApodList(byTitle: Boolean, byDate: Boolean) {
+        when {
+            byTitle -> apodListUIModel.value?.sortByTitleAsc()
+            byDate -> apodListUIModel.value?.sortByDateDes()
+        }
+
+        apodListUIModel.notifyDataChange()
     }
 
 }
