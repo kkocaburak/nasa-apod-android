@@ -24,7 +24,11 @@ class FRNasaApodListing : BaseFragment<FRNasaApodListingVM, FragmentNasaApodList
         binder.repoListingRecyclerview.adapter = adapterApodList
     }
 
-    override fun setListeners() {}
+    override fun setListeners() {
+        adapterApodList.setOnClickListener {
+            viewModel.onApodItemClicked(it)
+        }
+    }
 
     override fun setReceivers() {
         observe(viewModel.apodListUIModel) {

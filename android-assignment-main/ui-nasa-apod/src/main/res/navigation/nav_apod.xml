@@ -7,5 +7,23 @@
     <fragment
         android:id="@+id/FRNasaApodListing"
         android:name="com.bkarakoca.ui_nasa_apod.apodlisting.FRNasaApodListing"
-        android:label="FRNasaApodListing" />
+        android:label="FRNasaApodListing" >
+        <action
+            android:id="@+id/toFRNasaApodDetail"
+            app:destination="@id/FRNasaApodDetail">
+
+            <argument
+                android:name="apodUIModel"
+                app:argType="com.bkarakoca.domain.uimodel.ApodUIModel" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/FRNasaApodDetail"
+        android:name="com.bkarakoca.ui_nasa_apod.apoddetail.FRNasaApodDetail"
+        android:label="FRNasaApodDetail">
+        <argument
+            android:name="apodUIModel"
+            app:argType="com.bkarakoca.domain.uimodel.ApodUIModel" />
+    </fragment>
 </navigation>
