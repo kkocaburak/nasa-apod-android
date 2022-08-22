@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.bkarakoca.core.base.BaseViewModel
 import com.bkarakoca.core.extension.launch
 import com.bkarakoca.domain.uimodel.ApodListUIModel
+import com.bkarakoca.domain.uimodel.ApodUIModel
 import com.bkarakoca.domain.usecase.GetNasaApodListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.onCompletion
@@ -32,6 +33,10 @@ class FRNasaApodListingVM @Inject constructor(
             .collect {
                 apodListUIModel.value = it
             }
+    }
+
+    fun onApodItemClicked(apodUIModel: ApodUIModel) {
+        navigate(FRNasaApodListingDirections.toFRNasaApodDetail(apodUIModel))
     }
 
 }
