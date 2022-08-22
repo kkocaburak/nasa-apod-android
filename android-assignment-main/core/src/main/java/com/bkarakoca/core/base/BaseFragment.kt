@@ -80,6 +80,9 @@ abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding> :
             is NavigationCommand.ToDirection -> {
                 findNavController().navigate(command.directions, getExtras())
             }
+            is NavigationCommand.ToDialog -> {
+                command.dialogFragment.show(requireActivity().supportFragmentManager, command.tag)
+            }
             is NavigationCommand.Popup -> {
                 with(command) {
                     context?.showPopup(model, listener)

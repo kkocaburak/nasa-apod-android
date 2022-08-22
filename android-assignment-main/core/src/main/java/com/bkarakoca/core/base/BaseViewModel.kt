@@ -1,6 +1,7 @@
 package com.bkarakoca.core.base
 
 import androidx.annotation.StringRes
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -55,6 +56,10 @@ abstract class BaseViewModel : ViewModel() {
 
     fun navigate(directions: NavDirections) {
         _navigation.value = Event(NavigationCommand.ToDirection(directions))
+    }
+
+    fun navigate(dialogFragment: DialogFragment, tag: String) {
+        _navigation.value = Event(NavigationCommand.ToDialog(dialogFragment, tag))
     }
 
     fun navigate(model: PopupModel, listener: PopupListener?) {

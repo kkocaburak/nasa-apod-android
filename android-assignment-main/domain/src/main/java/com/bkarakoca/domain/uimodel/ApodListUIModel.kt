@@ -5,8 +5,16 @@ import com.bkarakoca.core.base.ListAdapterItem
 import kotlinx.parcelize.Parcelize
 
 data class ApodListUIModel(
-    val apodList: List<ApodUIModel>
+    var apodList: List<ApodUIModel>
 )
+
+fun ApodListUIModel.sortByTitleAsc() {
+    apodList = apodList.sortedBy { it.title }
+}
+
+fun ApodListUIModel.sortByDateDes() {
+    apodList = apodList.sortedByDescending { it.date }
+}
 
 @Parcelize
 data class ApodUIModel(
