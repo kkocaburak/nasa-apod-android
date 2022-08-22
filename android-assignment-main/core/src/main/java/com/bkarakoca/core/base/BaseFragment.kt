@@ -26,7 +26,7 @@ abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding> :
 
     protected abstract val viewModel: VM
 
-    private var isViewInitialized = false
+    var isViewInitialized = false
 
     abstract fun initialize()
 
@@ -51,12 +51,11 @@ abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding> :
         observeNavigation()
         observeFailure()
 
-        if (!isViewInitialized) {
-            isViewInitialized = true
-            initialize()
-        }
+        initialize()
         setListeners()
         setReceivers()
+
+        isViewInitialized = !isViewInitialized
     }
 
     private fun observeNavigation() {

@@ -19,7 +19,9 @@ class FRNasaApodListing : BaseFragment<FRNasaApodListingVM, FragmentNasaApodList
     lateinit var adapterApodList: AdapterApodList
 
     override fun initialize() {
-        viewModel.initVM()
+        if (!isViewInitialized) {
+            viewModel.initVM()
+        }
 
         binder.fragmentApodListRecyclerview.adapter = adapterApodList
     }
