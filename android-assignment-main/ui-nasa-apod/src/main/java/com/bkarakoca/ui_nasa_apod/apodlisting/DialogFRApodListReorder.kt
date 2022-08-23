@@ -36,11 +36,26 @@ class DialogFRApodListReorder(
 
     private fun setListeners() {
         dialog?.window?.apply {
+            val checkboxTitle = findViewById<CheckBox>(R.id.dialog_apod_checkbox_reorder_by_title)
+            val checkboxDate = findViewById<CheckBox>(R.id.dialog_apod_checkbox_reorder_by_date)
+
             findViewById<Button>(R.id.dialog_apod_button_apply)?.setOnClickListener {
-                val isByTitle = findViewById<CheckBox>(R.id.dialog_apod_checkbox_reorder_by_title).isChecked
-                val isByDate = findViewById<CheckBox>(R.id.dialog_apod_checkbox_reorder_by_date).isChecked
+                val isByTitle = checkboxTitle.isChecked
+                val isByDate = checkboxDate.isChecked
                 applyClickListener.invoke(isByTitle, isByDate)
                 dismiss()
+            }
+
+            checkboxTitle.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    checkboxDate.isChecked = false
+                }
+            }
+
+            checkboxDate.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    checkboxTitle.isChecked = false
+                }
             }
         }
     }
