@@ -1,5 +1,6 @@
 package com.bkarakoca.ui_nasa_apod.apodlisting
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.MutableLiveData
 import com.bkarakoca.core.base.BaseViewModel
 import com.bkarakoca.core.extension.launch
@@ -27,7 +28,8 @@ class FRNasaApodListingVM @Inject constructor(
         fetchNasaApodList()
     }
 
-    private fun fetchNasaApodList() = launch {
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    internal fun fetchNasaApodList() = launch {
         withContext(Dispatchers.IO) {
             getNasaApodListUseCase()
                 .onStart { showLoading() }
@@ -51,7 +53,8 @@ class FRNasaApodListingVM @Inject constructor(
     }
 
 
-    private fun orderApodList(byTitle: Boolean, byDate: Boolean) {
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    internal fun orderApodList(byTitle: Boolean, byDate: Boolean) {
         apodListUIModel.value = when {
             byTitle -> apodListUIModel.value?.sortByTitleAsc()
             byDate -> apodListUIModel.value?.sortByDateDes()
