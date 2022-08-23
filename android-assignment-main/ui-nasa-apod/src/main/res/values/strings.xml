@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="apod_image">Image Apod</string>
+    <string name="reorder_list">Reorder list</string>
+    <string name="reorder_by_title">Reorder by title</string>
+    <string name="reorder_by_date">Reorder by date</string>
+    <string name="apply">Apply</string>
+    <string name="cancel">Cancel</string>
+    <string name="apod_list_reorder">Reorder list</string>
+</resources>

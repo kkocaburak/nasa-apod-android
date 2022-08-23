@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.bkarakoca.domain.uimodel.apod.ApodUIModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_apod_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_large">
+
+        <ImageView
+            android:id="@+id/item_apod_image"
+            imageFromUrl="@{item.imageUrl}"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/apod_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_apod_text_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:text="@{item.title}"
+            android:maxLines="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_apod_image"
+            app:layout_constraintTop_toTopOf="@id/item_apod_image" />
+
+        <TextView
+            android:id="@+id/item_apod_text_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:text="@{item.date}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_apod_image"
+            app:layout_constraintTop_toBottomOf="@+id/item_apod_text_title"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_apod"
+    app:startDestination="@id/FRNasaApodListing">
+
+    <fragment
+        android:id="@+id/FRNasaApodListing"
+        android:name="com.bkarakoca.ui_nasa_apod.apodlisting.FRNasaApodListing"
+        android:label="FRNasaApodListing" >
+        <action
+            android:id="@+id/toFRNasaApodDetail"
+            app:destination="@id/FRNasaApodDetail">
+
+            <argument
+                android:name="apodUIModel"
+                app:argType="com.bkarakoca.domain.uimodel.apod.ApodUIModel" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/FRNasaApodDetail"
+        android:name="com.bkarakoca.ui_nasa_apod.apoddetail.FRNasaApodDetail"
+        android:label="FRNasaApodDetail">
+        <argument
+            android:name="apodUIModel"
+            app:argType="com.bkarakoca.domain.uimodel.apod.ApodUIModel" />
+    </fragment>
+</navigation>

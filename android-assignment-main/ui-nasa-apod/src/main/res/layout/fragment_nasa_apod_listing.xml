@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.bkarakoca.ui_nasa_apod.apodlisting.FRNasaApodListingVM" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fragment_apod_list_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_xx_large"
+            android:background="@color/design_default_color_primary"
+            android:padding="@dimen/padding_x_small"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:id="@+id/fragment_apod_list_reorder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@color/design_default_color_primary">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:background="@color/design_default_color_primary"
+                    android:src="@drawable/ic_reorder" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textSize="@dimen/size_text_medium"
+                    android:gravity="center"
+                    android:layout_marginEnd="@dimen/margin_small"
+                    android:layout_marginStart="@dimen/margin_xx_small"
+                    android:background="@color/design_default_color_primary"
+                    android:text="@string/apod_list_reorder"
+                    android:textColor="@color/design_default_color_on_primary" />
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </FrameLayout>
+
+</layout>
