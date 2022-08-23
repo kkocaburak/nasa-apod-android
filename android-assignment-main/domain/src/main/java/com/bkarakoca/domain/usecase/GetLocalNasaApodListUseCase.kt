@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class GetNasaApodListUseCase @Inject constructor(
+class GetLocalNasaApodListUseCase @Inject constructor(
     private val planetaryRepository: PlanetaryRepository
 ) {
 
@@ -16,7 +16,7 @@ class GetNasaApodListUseCase @Inject constructor(
     }
 
     suspend operator fun invoke(): Flow<ApodListUIModel> = flow {
-        planetaryRepository.fetchApodList().collect {
+        planetaryRepository.fetchLocalApodList().collect {
             emit(
                 it.apply {
                     apodListLatest.add(FIRST_POSITION, ApodHeaderModel(0, "Latest"))

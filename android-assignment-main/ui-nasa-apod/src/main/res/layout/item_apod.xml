@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.bkarakoca.domain.uimodel.ApodUIModel" />
+            type="com.bkarakoca.domain.uimodel.apod.ApodUIModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

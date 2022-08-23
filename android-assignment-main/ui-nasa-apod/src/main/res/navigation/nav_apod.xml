@@ -14,7 +14,7 @@
 
             <argument
                 android:name="apodUIModel"
-                app:argType="com.bkarakoca.domain.uimodel.ApodUIModel" />
+                app:argType="com.bkarakoca.domain.uimodel.apod.ApodUIModel" />
         </action>
     </fragment>
 
@@ -24,6 +24,6 @@
         android:label="FRNasaApodDetail">
         <argument
             android:name="apodUIModel"
-            app:argType="com.bkarakoca.domain.uimodel.ApodUIModel" />
+            app:argType="com.bkarakoca.domain.uimodel.apod.ApodUIModel" />
     </fragment>
 </navigation>

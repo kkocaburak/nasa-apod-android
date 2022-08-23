@@ -27,6 +27,17 @@ abstract class BaseViewModel : ViewModel() {
     private val _navigation = MutableLiveData<Event<NavigationCommand>>()
     val navigation: LiveData<Event<NavigationCommand>> get() = _navigation
 
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> get() = _loading
+
+    fun showLoading() {
+        _loading.postValue(true)
+    }
+
+    fun hideLoading() {
+        _loading.postValue(false)
+    }
+
     protected open fun showPopup(message: String) {
         _popup.value = Event(PopupModel(message = message))
     }

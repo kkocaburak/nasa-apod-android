@@ -37,14 +37,25 @@
 
         <TextView
             android:id="@+id/fragment_apod_detail_date"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             android:text="@{viewModel.apodDetailUIModel.date}"
             android:textSize="@dimen/size_text_medium"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_apod_detail_image_favorite"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_apod_detail_title"
             tools:text="The Milky way" />
+
+        <ImageView
+            android:id="@+id/fragment_apod_detail_image_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_huge"
+            android:src="@{viewModel.apodDetailUIModel.favorite ? @drawable/ic_favorite_filled : @drawable/ic_favorite_border}"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_apod_detail_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/fragment_apod_detail_date" />
 
         <TextView
             android:id="@+id/fragment_apod_detail_explanation"
