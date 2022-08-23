@@ -13,8 +13,18 @@
     </data>
 
     <FrameLayout
+        android:id="@+id/frame_layout_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progress_bar_loading"
+            android:background="@color/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            tools:visibility="visible"
+            android:padding="@dimen/padding_progress_bar"/>
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/main_host_fragment"

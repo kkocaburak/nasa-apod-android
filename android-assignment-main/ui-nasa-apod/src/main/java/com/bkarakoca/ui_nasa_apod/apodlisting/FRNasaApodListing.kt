@@ -1,6 +1,7 @@
 package com.bkarakoca.ui_nasa_apod.apodlisting
 
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ConcatAdapter
 import com.bkarakoca.core.base.BaseFragment
 import com.bkarakoca.core.extension.observe
 import com.bkarakoca.ui_nasa_apod.R
@@ -16,18 +17,31 @@ class FRNasaApodListing : BaseFragment<FRNasaApodListingVM, FragmentNasaApodList
     override val viewModel: FRNasaApodListingVM by viewModels()
 
     @Inject
-    lateinit var adapterApodList: AdapterApodList
+    lateinit var adapterApodListLatest: AdapterApodList
+
+    @Inject
+    lateinit var adapterApodListFavorites: AdapterApodList
 
     override fun initialize() {
         if (!isViewInitialized) {
             viewModel.initVM()
         }
 
-        binder.fragmentApodListRecyclerview.adapter = adapterApodList
+        if (isViewInitialized) {
+            viewModel.fetchLocalApodList()
+        }
+        binder.fragmentApodListRecyclerview.adapter = ConcatAdapter(
+            adapterApodListFavorites,
+            adapterApodListLatest
+        )
     }
 
     override fun setListeners() {
-        adapterApodList.setOnClickListener {
+        adapterApodListLatest.setOnClickListener {
+            viewModel.onApodItemClicked(it)
+        }
+
+        adapterApodListFavorites.setOnClickListener {
             viewModel.onApodItemClicked(it)
         }
 
@@ -38,7 +52,8 @@ class FRNasaApodListing : BaseFragment<FRNasaApodListingVM, FragmentNasaApodList
 
     override fun setReceivers() {
         observe(viewModel.apodListUIModel) {
-            adapterApodList.submitList(it.apodList)
+            adapterApodListLatest.submitList(it.apodListLatest)
+            adapterApodListFavorites.submitList(it.apodListFavorites)
         }
     }
 }

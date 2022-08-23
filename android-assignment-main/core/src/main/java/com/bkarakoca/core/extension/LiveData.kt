@@ -8,6 +8,10 @@ fun <T> MutableLiveData<T>.notifyDataChange() {
     this.value = this.value
 }
 
+fun <T> MutableLiveData<T>.postDataChange() {
+    this.postValue(this.value)
+}
+
 fun <T> LiveData<T>.observeNonNull(owner: LifecycleOwner, observer: (t: T) -> Unit) {
     this.observe(owner) {
         it?.let(observer)

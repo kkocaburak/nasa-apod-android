@@ -10,13 +10,17 @@ abstract class BaseBindingAdapter<T : ListAdapterItem>(
     diffCallback: DiffUtil.ItemCallback<T> = ListAdapterItemDiffCallback()
 ) : ListAdapter<T, BaseBindingViewHolder<T>>(diffCallback) {
 
-    abstract fun getItemLayoutId(): Int
+    abstract fun getItemLayoutId(position: Int): Int
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder<T> {
         return BaseBindingViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                getItemLayoutId(),
+                getItemLayoutId(viewType),
                 parent,
                 false
             )

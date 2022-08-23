@@ -11,6 +11,9 @@ abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel> : AppCompat
 
     protected abstract val viewModel: VM
 
+    abstract fun showLoading()
+    abstract fun hideLoading()
+
     val binder by lazy<B>(LazyThreadSafetyMode.NONE) {
         DataBindingUtil.setContentView(this, layoutId)
     }

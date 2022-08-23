@@ -12,6 +12,7 @@ import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.bkarakoca.core.BR
+import com.bkarakoca.core.extension.observe
 import com.bkarakoca.core.extension.observeNonNull
 import com.bkarakoca.core.extension.showPopup
 import com.bkarakoca.core.navigation.NavigationCommand
@@ -48,6 +49,7 @@ abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding> :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeLoading()
         observeNavigation()
         observeFailure()
 
@@ -56,6 +58,16 @@ abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding> :
         setReceivers()
 
         isViewInitialized = !isViewInitialized
+    }
+
+    private fun observeLoading() {
+        observe(viewModel.loading) { shouldLoading ->
+            if (shouldLoading) {
+                (requireActivity() as? BaseActivity<*, *>)?.showLoading()
+            } else {
+                (requireActivity() as? BaseActivity<*, *>)?.hideLoading()
+            }
+        }
     }
 
     private fun observeNavigation() {
